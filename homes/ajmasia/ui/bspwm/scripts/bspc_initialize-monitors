@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Initialize bspw monitors & desktops
+is_displayPort_1_monitor_connected=$(xrandr --query | grep 'DisplayPort-1 connected')
+is_hdmi_monitor_connected=$(xrandr --query | grep 'HDMI-A-0 connected')
+
+if [[ $is_displayPort_1_monitor_connected == "" ]]; then
+  bspc monitor HDMI-A-0 -d I II III IV V VI VII VIII IX X
+
+  notify-send "Dell Monitor Connected"
+elif [[ $is_hdmi_monitor_connected == "" ]]; then
+  bspc monitor DisplayPort-1 -d I II III IV V VI VII VIII IX X
+
+  notify-send "Portable Dell Monitor Connected"
+else
+  bspc monitor DisplayPort-1 -d I II
+  bspc monitor HDMI-A-0 -d III IV V VI VII VIII IX X 
+  bspc desktop I -l monocle
+
+  notify-send "Window Manager" "Dual Monitors Connected" -i "~/.local/share/notify-icons/nixos.png"
+fi 

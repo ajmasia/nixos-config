@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+winclass="$(xdotool search --class terminal-scpad)";
+tmp=~/tmp/terminal-scpad
+
+if [ -z "$winclass" ]; then
+    alacritty --class terminal-scpad
+else
+    if [ ! -f $tmp ]; then
+        touch $tmp && xdo hide "$winclass"
+    elif [ -f $tmp ]; then
+        rm $tmp && xdo show "$winclass"
+    fi
+fi

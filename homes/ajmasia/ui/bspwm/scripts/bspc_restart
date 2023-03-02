@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+pkill sxhkd
+pkill solaar
+
+systemctl --user restart picom &
+systemctl --user restart polybar &
+
+bspc wm -r &
+
+notify-send 'Window Manager' 'Bspwm restart finished' -i "~/.local/share/notify-icons/nixos.png"
