@@ -19,6 +19,7 @@
     # Import custom home-manager modules exported by current flake
     outputs.homeManagerModules.shell
     outputs.homeManagerModules.svc
+    outputs.homeManagerModules.editors
   ];
 
   home = {
@@ -44,8 +45,6 @@
 
       enableCoreTools = true;
       customAlias = {
-        v = "nvim";
-        ".v" = "sudo nvim";
         ed = "nix run github:ajmasia/nvim-nix";
         ".ed" = "sudo nix run github:ajmasia/nvim-nix";
         edc = "cd $HOME/.nixos-config && ed flake.nix";
@@ -59,6 +58,15 @@
 
       enableAlias = true;
       enableLazygit = true;
+    };
+  };
+
+  neovim = {
+    enable = true;
+
+    aliases = {
+      v = "nvim";
+      ".v" = "sudo nvim";
     };
   };
 }

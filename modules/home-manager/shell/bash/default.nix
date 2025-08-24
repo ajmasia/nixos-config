@@ -26,6 +26,11 @@ let
     # Ensure XDG data dirs include system and Flatpak paths (apps can find .desktop files, etc.)
     export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
   '';
+
+  # Safely fetch the alias sets exported by other modules.
+  # If the path doesn't exist, default to an empty attrset {}.
+  gitAliases = lib.attrByPath [ "svc" "git" "aliases" ] { } config;
+  neovimAliases = lib.attrByPath [ "editors" "neovim" "customAliases" ] { } config;
 in
 {
   # Option declarations
@@ -66,7 +71,8 @@ in
         # Inject user-defined aliases from the `customAliases` option
         shellAliases = lib.mkMerge [
           cfg.customAlias
-          (lib.mkIf config.svc.git.enableAlias config.svc.git.alias)
+          (lib.mkIf gitAliasesEnabled (lib.mkDefault gitAliases))
+          (lib.mkDefault neovimAliases)
         ];
       };
 

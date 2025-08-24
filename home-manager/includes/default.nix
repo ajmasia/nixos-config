@@ -1,9 +1,7 @@
 { ... }:
 
 {
-  imports = [
-    ./editors.nix
-  ];
+  imports = [ ];
 }
 
 

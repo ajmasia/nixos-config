@@ -18,7 +18,7 @@ let
   # Load aliases from a separate file ONLY if enableAlias = true.
   # IMPORTANT: ../alias MUST return an attrset of strings, e.g. { gs = "git status"; co = "git checkout"; }
   loadedAliases =
-    if cfg.enableAlias then (import ./alias) else { };
+    if cfg.enableAliasese then (import ./alias) else { };
 in
 {
   options.svc.git = {
@@ -28,7 +28,7 @@ in
     enableLfs = mkEnableOption "enable lfs option";
 
     # Single, consistent switch name:
-    enableAlias = mkEnableOption "Enable Git aliases";
+    enableAliases = mkEnableOption "Enable Git aliases";
 
     # EXPORTED option with the aliases set so other modules (bash) can merge it.
     alias = mkOption {
@@ -40,7 +40,7 @@ in
 
   config = mkIf cfg.enable {
     # Populate the exported option when enabled (so others can read config.svc.git.aliases)
-    svc.git.alias = loadedAliases;
+    svc.git.aliases = loadedAliases;
 
     home.packages = with pkgs; [
       gitAndTools.diff-so-fancy
