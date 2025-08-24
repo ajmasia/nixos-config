@@ -61,13 +61,15 @@
     };
   };
 
-  neovim = {
-    enable = true;
+  editors = {
+    neovim = {
+      enable = true;
 
-    # aliases = {
-    #   v = "nvim";
-    #   ".v" = "sudo nvim";
-    # };
+      aliases = {
+        v = "nvim";
+        ".v" = "sudo nvim";
+      };
+    };
   };
 }
 
