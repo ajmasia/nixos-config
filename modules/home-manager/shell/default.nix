@@ -3,7 +3,6 @@
 {
   imports = [
     ./bash
-    ./svc
   ];
 }
 

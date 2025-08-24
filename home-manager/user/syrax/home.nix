@@ -54,6 +54,7 @@
   svc = {
     git = {
       enable = true;
+
       enableAlias = true;
       enableLazygit = true;
     };
