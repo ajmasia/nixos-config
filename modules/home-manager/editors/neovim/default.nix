@@ -3,12 +3,15 @@
 with lib;
 
 let
-  inherit (pkgs) unstable;
-
   cfg = config.editors.neovim;
 
   # Do not allow user-supplied settings to override 'enable' or 'package' here.
   safeSettings = removeAttrs cfg.settings [ "enable" "package" ];
+
+  nvimPkg =
+    if cfg.useUnstable && (pkgs ? unstable && pkgs.unstable ? neovim)
+    then pkgs.unstable.neovim
+    else pkgs.neovim;
 
   # Default aliases this module proposes; can be disabled via alias=false
   # and/or overridden/extended via `extraAliases`.
@@ -63,7 +66,7 @@ in
       {
         enable = true; # ensure Neovim is installed by HM
 
-        # package = unstable.neovim; # stable or unstable depending on cfg/useUnstable
+        package = nvimPkg; # stable or unstable depending on cfg.useUnstable
         defaultEditor = mkDefault true; # make nvim the default editor unless overridden
       }
       safeSettings # user-provided settings merged here
