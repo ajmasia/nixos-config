@@ -1,4 +1,4 @@
-{ inputs, outputs, unstable, ... }:
+{ inputs, outputs, ... }:
 
 {
   imports = [
@@ -7,10 +7,10 @@
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs unstable; };
+    extraSpecialArgs = { inherit inputs outputs; };
 
     # nixpkgs options are disabled when home-manager.useGlobalPkgs is enabled
-    useGlobalPkgs = true;
+    useGlobalPkgs = false;
     useUserPackages = true;
     backupFileExtension = "backup";
 
