@@ -62,7 +62,7 @@ in
         enable = true; # ensure Neovim is installed by HM
 
         package =
-          if cfg.useUnstable && (pkgs ? unstable && pkgs.unstable ? neovim)
+          if cfg.useUnstable
           then pkgs.unstable.neovim
           else pkgs.neovim;
 
