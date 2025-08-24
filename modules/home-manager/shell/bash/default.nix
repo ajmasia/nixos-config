@@ -71,7 +71,7 @@ in
         # Inject user-defined aliases from the `customAliases` option
         shellAliases = lib.mkMerge [
           cfg.customAlias
-          (lib.mkIf gitAliasesEnabled (lib.mkDefault gitAliases))
+          (lib.mkIf gitAliases (lib.mkDefault gitAliases))
           (lib.mkDefault neovimAliases)
         ];
       };
