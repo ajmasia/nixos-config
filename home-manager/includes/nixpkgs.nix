@@ -31,8 +31,5 @@
       permittedInsecurePackages = [ ];
     };
   };
-
-  # packages from overlays
-  home.packages = with pkgs; [ ];
 }
 
