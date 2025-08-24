@@ -61,6 +61,11 @@ in
       {
         enable = true; # ensure Neovim is installed by HM
 
+        package =
+          if cfg.useUnstable && (pkgs ? unstable && pkgs.unstable ? neovim)
+          then pkgs.unstable.neovim
+          else pkgs.neovim;
+
         defaultEditor = mkDefault true; # make nvim the default editor unless overridden
       }
       safeSettings # user-provided settings merged here
