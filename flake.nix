@@ -27,7 +27,7 @@
             specialArgs = { inherit inputs outputs; };
 
             modules = [
-              ./nixos/vm/configuration.nix
+              ./nixos/host/vm/configuration.nix
             ];
           };
       };
