@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
@@ -17,6 +17,9 @@
       ./home-manager.nix
 
       # Include additional configuration files from the 'includes' directory
+
+      # Custom modules
+      # outputs.nixosModules.my-module
     ];
 
   # Bootloader.

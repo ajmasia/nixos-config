@@ -14,6 +14,9 @@
     # Or modules exported from other flakes (such as nix-colors):
 
     # Include splited configuration files here
+
+    # Import custom home-manager modules exported by current flake
+    outputs.homeManagerModules.shell
   ];
 
   home = {
@@ -32,5 +35,19 @@
   };
 
   programs.home-manager.enable = true;
+
+  shell = {
+    bash = {
+      enable = true;
+
+      enableCoreTools = true;
+      customAliases = {
+        ed = "nix run github:ajmasia/nvim-nix";
+        ".ed" = "sudo nix run github:ajmasia/nvim-nix";
+        edc = "cd $HOME/.nixos-config && ed flake.nix";
+        gc = "cd $HOME/.nixos-config";
+      };
+    };
+  };
 }
 
