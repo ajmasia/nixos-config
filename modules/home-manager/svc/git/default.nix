@@ -31,7 +31,7 @@ in
     enableAlias = mkEnableOption "Enable Git aliases";
 
     # EXPORTED option with the aliases set so other modules (bash) can merge it.
-    aliases = mkOption {
+    alias = mkOption {
       type = types.attrsOf types.str; # { aliasName = "command"; }
       default = { };
       description = "Alias map to inject into shells when enableAlias = true.";
@@ -43,8 +43,6 @@ in
     svc.git.alias = loadedAliases;
 
     home.packages = with pkgs; [
-      # NOTE: On recent nixpkgs, gitAndTools.* may be deprecated.
-      # Consider: diff-so-fancy, gh (official GitHub CLI), tig
       gitAndTools.diff-so-fancy
       gitAndTools.hub
       gitAndTools.tig
