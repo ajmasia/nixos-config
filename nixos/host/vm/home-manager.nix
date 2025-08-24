@@ -7,7 +7,7 @@
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = { inherit inputs outputs unstable; };
 
     # nixpkgs options are disabled when home-manager.useGlobalPkgs is enabled
     useGlobalPkgs = true;
