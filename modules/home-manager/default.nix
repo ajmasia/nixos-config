@@ -3,6 +3,7 @@
 {
   # List your module files here
   shell = ./shell;
+  svc = ./svc;
 }
 
 
