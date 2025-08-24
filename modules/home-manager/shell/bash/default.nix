@@ -34,7 +34,7 @@ in
     enable = mkEnableOption "Enable bash configuration";
 
     # User-provided alias map (e.g., { ll = "ls -alF"; gs = "git status"; })
-    customAliases = mkOption {
+    customAlias = mkOption {
       type = types.attrs;
       default = { };
       description = "define shell aliases";
@@ -64,7 +64,10 @@ in
         shellOptions = [ "histappend" "checkwinsize" "extglob" "globstar" "checkjobs" "autocd" ];
 
         # Inject user-defined aliases from the `customAliases` option
-        shellAliases = cfg.customAliases;
+        shellAliases = lib.mkMerge [
+          cfg.customAlias
+          (lib.mkIf config.svc.git.enableAlias config.svc.git.alias)
+        ];
       };
 
       programs.readline = {

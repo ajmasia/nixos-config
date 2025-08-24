@@ -2,8 +2,7 @@
 
 {
   imports = [
-    ./bash
-    ./svc
+    ./git
   ];
 }
 
