@@ -1,35 +1,5 @@
 { lib, config, pkgs, ... }:
 
-# Home Manager module: Neovim with optional unstable package and Bash aliases.
-# Usage example (in your HM config):
-#
-#   {
-#     # Add `outputs.homeManagerModules.editors` to home.nix imports
-#
-#     editors.neovim = {
-#       enable = true;
-#       alias = true;            # add bash aliases vi/vim -> nvim
-#       useUnstable = true;      # requires pkgs.unstable overlay to be present
-#       settings = {
-#         viAlias = true;        # programs.neovim options merged below
-#         vimAlias = true;
-#         withNodeJs = true;
-#         withPython3 = true;
-#
-#         extraConfig = ''
-#           set number
-#           set relativenumber
-#         '';
-#       };
-#     }; e
-#   }
-#
-# Notes:
-# - `settings` is merged into programs.neovim, but `enable` and `package` keys are ignored
-#   to avoid conflicts with this module's own logic.
-# - If `useUnstable = true` and `pkgs.unstable.neovim` is unavailable, we silently fall back
-#   to the stable `pkgs.neovim` to keep evaluation robust.
-
 with lib;
 
 let
@@ -49,7 +19,7 @@ let
   defaultAliases = { };
 in
 {
-  options.svc.neovim = {
+  options.editors.neovim = {
     enable = mkEnableOption "Install and configure Neovim via Home Manager.";
 
     aliases = mkOption {

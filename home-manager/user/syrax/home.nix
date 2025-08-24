@@ -56,7 +56,7 @@
     git = {
       enable = true;
 
-      enableAlias = true;
+      enableAliases = true;
       enableLazygit = true;
     };
   };
