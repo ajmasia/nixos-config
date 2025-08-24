@@ -23,7 +23,7 @@ in
     enable = mkEnableOption "Install and configure Neovim via Home Manager.";
 
     aliases = mkOption {
-      type = types.attrsOf types.str; # { name = "command"; }
+      type = types.attrsOf types.str;
       default = { };
       description = "User-defined aliases merged on top of the module defaults.";
     };
