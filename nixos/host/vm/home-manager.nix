@@ -15,7 +15,7 @@
 
     users = {
       # Import your home-manager configuration
-      "syrx" = import ../../../home-manager/user/syrax/home.nix;
+      "syrax" = import ../../../home-manager/user/syrax/home.nix;
     };
   };
 }
