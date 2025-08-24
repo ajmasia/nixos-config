@@ -30,6 +30,8 @@ let
   # Safely fetch the alias sets exported by other modules.
   # If the path doesn't exist, default to an empty attrset {}.
   gitAliases = lib.attrByPath [ "svc" "git" "aliases" ] { } config;
+  gitAliasesEnabled = lib.attrByPath [ "svc" "git" "enableAlias" ] false config;
+
   neovimAliases = lib.attrByPath [ "editors" "neovim" "customAliases" ] { } config;
 in
 {
@@ -71,7 +73,7 @@ in
         # Inject user-defined aliases from the `customAliases` option
         shellAliases = lib.mkMerge [
           cfg.customAlias
-          (lib.mkIf gitAliases (lib.mkDefault gitAliases))
+          (lib.mkIf gitAliasesEnabled (lib.mkDefault gitAliases))
           (lib.mkDefault neovimAliases)
         ];
       };
