@@ -1,5 +1,5 @@
 {
-  descrition = "NixOS stable with ad-hoc unstable access";
+  description = "NixOS stable with ad-hoc unstable access";
 
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
   nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
