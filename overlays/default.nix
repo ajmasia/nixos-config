@@ -14,7 +14,7 @@
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs.stable'
-  unstable = final: _prev: {
+  unstable-packages = final: _prev: {
     stable = import inputs.nixpkgs-unstable {
       system = final.system;
 

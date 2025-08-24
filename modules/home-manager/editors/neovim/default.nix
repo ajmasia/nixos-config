@@ -3,6 +3,8 @@
 with lib;
 
 let
+  inherit (pkgs) unstable;
+
   cfg = config.editors.neovim;
 
   # Do not allow user-supplied settings to override 'enable' or 'package' here.
