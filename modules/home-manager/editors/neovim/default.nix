@@ -5,12 +5,6 @@ with lib;
 let
   cfg = config.editors.neovim;
 
-  # Pick Neovim package: prefer unstable when requested AND available, else stable.
-  nvimPkg =
-    if cfg.useUnstable && (pkgs ? unstable && pkgs.unstable ? neovim)
-    then pkgs.unstable.neovim
-    else pkgs.neovim;
-
   # Do not allow user-supplied settings to override 'enable' or 'package' here.
   safeSettings = removeAttrs cfg.settings [ "enable" "package" ];
 
@@ -67,7 +61,7 @@ in
       {
         enable = true; # ensure Neovim is installed by HM
 
-        package = nvimPkg; # stable or unstable depending on cfg/useUnstable
+        package = unstable.neovim; # stable or unstable depending on cfg/useUnstable
         defaultEditor = mkDefault true; # make nvim the default editor unless overridden
       }
       safeSettings # user-provided settings merged here
