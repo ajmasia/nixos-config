@@ -19,7 +19,7 @@
       # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays { inherit inputs nixpkgs; };
 
-      nixosConfiguration = {
+      nixosConfigurations = {
         "nixos" =
           nixpkgs.lib.nixosSystem {
             inherit system;
