@@ -40,7 +40,7 @@ in
 
   config = mkIf cfg.enable {
     # Populate the exported option when enabled (so others can read config.svc.git.aliases)
-    svc.git.aliases = loadedAliases;
+    svc.git.alias = loadedAliases;
 
     home.packages = with pkgs; [
       # NOTE: On recent nixpkgs, gitAndTools.* may be deprecated.
