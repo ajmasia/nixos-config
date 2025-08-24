@@ -29,13 +29,6 @@ in
       description = "Alias map to inject into shells.";
     };
 
-
-    useUnstable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Use Neovim from nixpkgs-unstable (requires 'pkgs.unstable' overlay).";
-    };
-
     settings = mkOption {
       type = types.attrs;
       default = { };
@@ -60,11 +53,6 @@ in
     programs.neovim = mkMerge [
       {
         enable = true; # ensure Neovim is installed by HM
-
-        package =
-          if cfg.useUnstable
-          then pkgs.unstable.neovim
-          else pkgs.neovim;
 
         defaultEditor = mkDefault true; # make nvim the default editor unless overridden
       }
