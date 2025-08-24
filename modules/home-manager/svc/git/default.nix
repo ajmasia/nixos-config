@@ -18,7 +18,7 @@ let
   # Load aliases from a separate file ONLY if enableAlias = true.
   # IMPORTANT: ../alias MUST return an attrset of strings, e.g. { gs = "git status"; co = "git checkout"; }
   loadedAliases =
-    if cfg.enableAliasese then (import ./alias) else { };
+    if cfg.enableAliases then (import ./alias) else { };
 in
 {
   options.svc.git = {
