@@ -12,6 +12,7 @@
     # nixpkgs options are disabled when home-manager.useGlobalPkgs is enabled
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = "backup";
 
     users = {
       # Import your home-manager configuration
