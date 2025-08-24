@@ -29,6 +29,13 @@ in
 
     # Single, consistent switch name:
     enableAliases = mkEnableOption "Enable Git aliases";
+
+    # EXPORTED option with the aliases set so other modules (bash) can merge it.
+    aliases = mkOption {
+      type = types.attrsOf types.str; # { aliasName = "command"; }
+      default = { };
+      description = "Alias map to inject into shells when enableAlias = true.";
+    };
   };
 
   config = mkIf cfg.enable {

@@ -28,6 +28,14 @@ in
       description = "User-defined aliases merged on top of the module defaults.";
     };
 
+    # EXPORTED option with the aliases set so other modules (bash) can merge it.
+    customAliases = mkOption {
+      type = types.attrsOf types.str; # { aliasName = "command"; }
+      default = { };
+      description = "Alias map to inject into shells.";
+    };
+
+
     useUnstable = mkOption {
       type = types.bool;
       default = false;
