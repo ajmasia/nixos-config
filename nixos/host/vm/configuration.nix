@@ -17,6 +17,7 @@
       ./home-manager.nix
 
       # Include additional configuration files from the 'includes' directory
+      ./environment.nix
 
       # Custom modules
       # outputs.nixosModules.my-module
@@ -69,11 +70,6 @@
     packages = with pkgs; [ ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-  ];
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
 
