@@ -66,7 +66,7 @@ in
         # Inject user-defined aliases from the `customAliases` option
         shellAliases = mkMerge [
           cfg.customAliases
-          (lib.mkIf config.svc.git.enableGitAliases config.svc.git.aliases)
+          (lib.mkIf config.svc.git.enableAliases config.svc.git.aliases)
         ];
       };
 
