@@ -10,7 +10,7 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    lua51 = final: prev:
+    lua5-package = final: prev:
       let
         # https://lazamar.co.uk/nix-versions/
         legacy = import
@@ -20,8 +20,8 @@
 
           })
           {
-            system = prev.stdenv.hostPlatform.system or system; # <-- pasamos system
-            config = prev.config;
+            system = final.system; # ensure no builtins.currentSystem is used
+            config = prev.config; # propagate allowUnfree, etc.
           };
       in
       {
