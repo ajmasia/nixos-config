@@ -67,6 +67,7 @@ in
         shellAliases = mkMerge [
           cfg.customAliases
           (lib.mkIf config.svc.git.enableAliases config.svc.git.aliases)
+          config.editors.neovim.customAliases
         ];
       };
 
