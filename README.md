@@ -18,7 +18,7 @@ This repository provides a modular and reproducible NixOS configuration using [N
 - `modules/nixos/`: Reusable NixOS modules.
 - `modules/home-manager/`: Reusable Home Manager modules.
 - `nixos/host/lab/`: Example NixOS host configuration.
-- `home-manager/user/syrax/`: Example Home Manager user configuration.
+- `home-manager/user/beta/`: Example Home Manager user configuration.
 
 ## Usage
 
@@ -60,22 +60,22 @@ See `nixos/host/lab/default.nix` for a sample host setup.
 
 ### Example Home Manager Configuration
 
-See `home-manager/user/syrax/home.nix` for a sample user environment.
+See `home-manager/user/beta/home.nix` for a sample user environment.
 
 ## Quick installation for the `lab` host
 
 1. **Perform a minimal NixOS installation**  
-   Install NixOS with a minimal setup (no graphical environment) and create the user named `syrax` during the installation process.
+   Install NixOS with a minimal setup (no graphical environment) and create the user named `beta` during the installation process.
 
 2. **Boot and log in**  
-   Start the machine and log in as the `syrax` user.
+   Start the machine and log in as the `beta` user.
 
 3. **Run the installation script**  
    Download and execute the installation script using `nix-shell` and `curl`:
    ```sh
    nix-shell -p curl --run "curl -fsSL https://raw.githubusercontent.com/ajmasia/nixos-config/main/install.sh | bash"
    ```
-This will automatically apply the configuration for the `lab` host and the `syrax` user.
+This will automatically apply the configuration for the `lab` host and the `beta` user.
 
 ## License
 

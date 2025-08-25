@@ -1,9 +1,9 @@
 { pkgs, ... }: {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.syrax = {
+  users.users.beta = {
     isNormalUser = true;
-    description = "syrax";
+    description = "beta";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [ ];
   };

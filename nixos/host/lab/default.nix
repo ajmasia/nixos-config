@@ -14,7 +14,7 @@
     ../../includes
 
     # Include users configuration
-    ../../user/syrax.nix
+    ../../user/beta.nix
 
     # Include additional configuration files from the host 'includes' directory
     ./includes
