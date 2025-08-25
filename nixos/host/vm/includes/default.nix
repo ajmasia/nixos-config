@@ -5,7 +5,7 @@
     ./boot.nix
     ./environment.nix
     ./home-manager.nix
-    ./logging.nix
+    ./loggin.nix
     ./virtualisation.nix
   ];
 }
