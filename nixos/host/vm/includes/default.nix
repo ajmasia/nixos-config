@@ -7,6 +7,7 @@
     ./home-manager.nix
     # ./loggin.nix
     ./virtualisation.nix
+    ./networking.nix
   ];
 }
 
