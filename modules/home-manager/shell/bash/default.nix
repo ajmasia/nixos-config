@@ -34,7 +34,7 @@ in
     enable = mkEnableOption "Enable bash configuration";
 
     # User-provided alias map (e.g., { ll = "ls -alF"; gs = "git status"; })
-    customAliases = mkOption {
+    aliases = mkOption {
       type = types.attrs;
       default = { };
       description = "define shell aliases";
@@ -65,7 +65,7 @@ in
 
         # Inject user-defined aliases from the `customAliases` option
         shellAliases = mkMerge [
-          cfg.customAliases
+          cfg.aliases
           (lib.mkIf config.svc.git.enableAliases config.svc.git.aliases)
           config.editors.neovim.customAliases
         ];
