@@ -10,14 +10,14 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
-      # Include common configuration
+      # Include common host configurations
       ../../includes
 
-      # Include home-manager configuration
-      ./home-manager.nix
+      # Include users configuration
+      ../../user/syrax.nix
 
-      # Include additional configuration files from the 'includes' directory
-      ./environment.nix
+      # Include additional configuration files from the host 'includes' directory
+      ./includes
 
       # Custom modules
       # outputs.nixosModules.my-module
@@ -60,14 +60,6 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "altgr-intl";
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.syrax = {
-    isNormalUser = true;
-    description = "syrax";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [ ];
   };
 
   services.qemuGuest.enable = true;
