@@ -14,8 +14,8 @@
       inherit (self) outputs;
 
       system = "x86_64-linux";
-    in
-    {
+      version = "0.1.0";
+    in {
       # Your custom packages
       # Accessible through 'nix build', 'nix shell', etc
       packages = import ./packages nixpkgs.legacyPackages.${system};
@@ -32,16 +32,13 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        "nixos" =
-          nixpkgs.lib.nixosSystem {
-            inherit system;
+        "nixos" = nixpkgs.lib.nixosSystem {
+          inherit system;
 
-            specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs outputs; };
 
-            modules = [
-              ./nixos/host/vm
-            ];
-          };
+          modules = [ ./nixos/host/vm ];
+        };
       };
     };
 }
