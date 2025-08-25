@@ -32,12 +32,22 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
+        # Minimal instance lab
         lab = nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = { inherit inputs outputs; };
 
           modules = [ ./nixos/host/lab ];
+        };
+
+        # Hyprland instance lab
+        hlab = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = { inherit inputs outputs; };
+
+          modules = [ ./nixos/host/hlab ];
         };
       };
     };
