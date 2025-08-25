@@ -29,6 +29,6 @@ cd "$CLONE_DIR"
 
 # Apply the configuration with flakes enabled
 echo "Applying NixOS configuration using flakes..."
-sudo nixos-rebuild switch --impure --flake "$CLONE_DIR#nixos-$HOST_NAME" --option experimental-features "nix-command flakes"
+sudo nixos-rebuild switch --impure --flake "$CLONE_DIR#$HOST_NAME" --option experimental-features "nix-command flakes"
 
 echo "NixOS configuration applied successfully!"
