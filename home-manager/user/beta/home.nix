@@ -13,7 +13,7 @@
     # Import custom home-manager modules exported by current flake
     outputs.homeManagerModules.shell
     outputs.homeManagerModules.svc
-    outputs.homeManagerModules.editors
+    outputs.homeManagerModules.editor
   ];
 
   home = {
@@ -55,7 +55,7 @@
     };
   };
 
-  editors = {
+  editor = {
     neovim = {
       enable = true;
 
