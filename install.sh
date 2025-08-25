@@ -23,15 +23,7 @@ nix-shell -p git --run "
 
 cd "$CLONE_DIR"
 
-# Copy hardware-configuration.nix
-if [ -f /etc/nixos/hardware-configuration.nix ]; then
-  cp /etc/nixos/hardware-configuration.nix $CLONE_DIR/nixos/host/$HOST_NAME/hardware-configuration.nix
-else
-  echo '/etc/nixos/hardware-configuration.nix not found! Aborting.'
-  exit 1
-fi
-
 # Apply the configuration with flakes enabled
-sudo nixos-rebuild switch --flake "$CLONE_DIR#nixos-$HOST_NAME" --option experimental-features "nix-command flakes"
+sudo nixos-rebuild switch --impure --flake "$CLONE_DIR#nixos-$HOST_NAME" --option experimental-features "nix-command flakes"
 
 echo "NixOS configuration applied successfully!"

@@ -5,27 +5,23 @@
 { inputs, outputs, config, pkgs, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [
+    # Include the results of the hardware scan.
+    # ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
 
-      # Include common host configurations
-      ../../includes
+    # Include common host configurations
+    ../../includes
 
-      # Include users configuration
-      ../../user/syrax.nix
+    # Include users configuration
+    ../../user/syrax.nix
 
-      # Include additional configuration files from the host 'includes' directory
-      ./includes
+    # Include additional configuration files from the host 'includes' directory
+    ./includes
 
-      # Custom modules
-      # outputs.nixosModules.my-module
-    ];
-
-
-
-
+    # Custom modules
+    # outputs.nixosModules.my-module
+  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
