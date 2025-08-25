@@ -1,7 +1,7 @@
 { lib, ... }:
 
 {
-  imports = [ ./autostart.nix ./binding.nix ];
+  imports = [ ./autostart.nix ./binding.nix ./ui.nix ];
 
   wayland.windowManager.hyprland.settings = {
     # Default applications
