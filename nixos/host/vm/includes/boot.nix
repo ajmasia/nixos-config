@@ -10,7 +10,7 @@
       timeout = 2;
 
       grub = {
-        enabled = true;
+        enable = true;
         device = "/dev/vda";
         useOSProber = true;
       };
