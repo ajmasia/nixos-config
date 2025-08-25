@@ -5,12 +5,10 @@
   services.greetd = {
     enable = true;
     settings = rec {
-      initial_session = {
-        user = "syrax";
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd bash";
+      default_session = {
+        user = "greeter";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --user syrax --asterisks --cmd bash";
       };
-
-      default_session = initial_session;
     };
   };
 }
