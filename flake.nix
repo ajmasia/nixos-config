@@ -14,7 +14,7 @@
       inherit (self) outputs;
 
       system = "x86_64-linux";
-      version = "0.1.0";
+      version = "0.2.0";
     in {
       # Your custom packages
       # Accessible through 'nix build', 'nix shell', etc
