@@ -70,6 +70,7 @@ in
 
     programs.lazygit = {
       enable = cfg.enableLazygit;
+
       package = pkgs.lazygit;
       settings.disableStartupPopups = true;
     };
