@@ -8,4 +8,13 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+  security.sudo = {
+    enable = true;
+
+    # Show asterisks when entering password
+    extraConfig = ''
+      Defaults pwfeedback
+    '';
+  };
 }
