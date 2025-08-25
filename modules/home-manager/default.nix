@@ -4,7 +4,7 @@
   # List your module files here
   shell = ./shell;
   svc = ./svc;
-  editors = ./editors;
+  editor = ./editor;
+  terminal = ./terminal;
 }
-
 
