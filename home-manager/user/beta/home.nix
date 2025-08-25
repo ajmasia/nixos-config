@@ -62,7 +62,7 @@
       lazyvim.enable = true;
       aliases = {
         v = "nvim";
-        vc = "cd ~/.nixos-config && v";
+        vc = "cd ~/.nixos-config && v flake.nix";
         ".v" = "sudo nvim";
       };
     };
