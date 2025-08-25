@@ -10,6 +10,24 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+    lua51 = final: prev:
+      let
+        # https://lazamar.co.uk/nix-versions/
+        legacy = import
+          (builtins.fetchTarball {
+            url = "https://github.com/NixOS/nixpkgs/archive/e10001042d6fc2b4246f51b5fa1625b8bf7e8df3.tar.gz";
+            sha256 = "sha256:09s6y6i2pprqlk4zmq6ssrc77ag005wyalvnq6x6qspxrx8k1wvi";
+
+          })
+          {
+            system = prev.stdenv.hostPlatform.system or system; # <-- pasamos system
+            config = prev.config;
+          };
+      in
+      {
+        lua5_1 = legacy.lua5_1;
+      };
+
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will

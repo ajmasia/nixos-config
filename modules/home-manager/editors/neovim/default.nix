@@ -11,17 +11,6 @@ let
   # Default aliases this module proposes; can be disabled via alias=false
   # and/or overridden/extended via `extraAliases`.
   defaultAliases = { };
-
-  # https://lazamar.co.uk/nix-versions/
-  legacyPkgs = import
-    (builtins.fetchTarball
-      {
-        url = "https://github.com/NixOS/nixpkgs/archive/e10001042d6fc2b4246f51b5fa1625b8bf7e8df3.tar.gz";
-        sha256 = "sha256:09s6y6i2pprqlk4zmq6ssrc77ag005wyalvnq6x6qspxrx8k1wvi";
-      })
-    { };
-
-  lua5 = legacyPkgs.lua5;
 in
 {
   options.editors.neovim = {
