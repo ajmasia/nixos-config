@@ -65,6 +65,7 @@
     neovim = {
       enable = true;
 
+      lazyvim.enable = true;
       aliases = {
         v = "nvim";
         ".v" = "sudo nvim";

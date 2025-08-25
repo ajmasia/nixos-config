@@ -46,23 +46,55 @@ in
         The 'enable' and 'package' keys are ignored here.
       '';
     };
+
+    # --- NEW: simple LazyVim bootstrap switch ---
+    lazyvim.enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = "If true, clone LazyVim/starter into ~/.config/nvim when the directory is absent or empty.";
+    };
   };
+  config = mkIf cfg.enable (mkMerge [
+    # Neovim base configuration
+    {
+      programs.neovim = mkMerge [
+        {
+          enable = true; # ensure Neovim is installed by HM
+          defaultEditor = mkDefault true;
+        }
+        safeSettings
+      ];
 
-  config = mkIf cfg.enable {
-    # Main Neovim program configuration
-    programs.neovim = mkMerge [
-      {
-        enable = true; # ensure Neovim is installed by HM
+      # Export aliases (module defaults -> user-provided)
+      editors.neovim.customAliases = mkMerge [
+        (mkDefault defaultAliases)
+        cfg.aliases
+      ];
+    }
 
-        defaultEditor = mkDefault true; # make nvim the default editor unless overridden
-      }
-      safeSettings # user-provided settings merged here
-    ];
+    # LazyVim bootstrap via simple bash script (git clone), only if enabled
+    (mkIf cfg.lazyvim.enable {
+      # Ensure git is available in activation
+      home.packages = [ pkgs.git pkgs.coreutils ];
 
-    editors.neovim.customAliases = mkMerge [
-      (mkDefault defaultAliases) # lower priority: can be overridden by extraAliases
-      cfg.aliases # higher priority: defined where the module is used
-    ];
-  };
+      # Activation step runs after files are written; it won't overwrite an existing config.
+      home.activation.neovimLazyVimBootstrap = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        set -eu
+
+        CFG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+        NVIM_DIR="${CFG_HOME}/nvim"
+
+        # If nvim config dir is missing OR empty => bootstrap LazyVim
+        if [ ! -d "$NVIM_DIR" ] || [ -z "$(${pkgs.coreutils}/bin/ls -A "$NVIM_DIR" 2>/dev/null || true)" ]; then
+          echo "[neovim] Bootstrapping LazyVim into $NVIM_DIR"
+          ${pkgs.coreutils}/bin/mkdir -p "$CFG_HOME"
+          ${pkgs.git}/bin/git clone --depth 1 https://github.com/LazyVim/starter "$NVIM_DIR"
+          ${pkgs.coreutils}/bin/rm -rf "$NVIM_DIR/.git"
+        else
+          echo "[neovim] Skipping LazyVim bootstrap: $NVIM_DIR already exists and is not empty"
+        fi
+      '';
+    })
+  ]);
 }
 
