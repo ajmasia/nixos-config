@@ -11,6 +11,14 @@ let
   # Default aliases this module proposes; can be disabled via alias=false
   # and/or overridden/extended via `extraAliases`.
   defaultAliases = { };
+
+  legacyPkgs = import
+    (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/e10001042d6fc2b4246f51b5fa1625b8bf7e8df3.tar.gz";
+    })
+    { };
+
+  lua5 = legacyPkgs.lua5;
 in
 {
   options.editors.neovim = {
@@ -84,10 +92,10 @@ in
         cmake # Cross-platform, open-source build system generatorpa
         gnumake # Tool to control the generation of non-source files from sources
         cargo # Rust builder & module manager
-        luajit # Just-in-time compiler for Lua
         luajitPackages.luarocks # A package manager for Lua modules
         tree-sitter # An incremental parsing system for programming tools
         ripgrep # Line-oriented search tool that recursively searches your current directory for a regex pattern
+        lua5 # Just-In-Time Compiler for Lua
       ];
 
       # Activation step runs after files are written; it won't overwrite an existing config.
