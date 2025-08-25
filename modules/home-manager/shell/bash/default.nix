@@ -64,7 +64,7 @@ in
         shellOptions = [ "histappend" "checkwinsize" "extglob" "globstar" "checkjobs" "autocd" ];
 
         # Inject user-defined aliases from the `customAliases` option
-        shellAliases = ib.mkMerge [
+        shellAliases = mkMerge [
           cfg.customAliases
           (lib.mkIf config.svc.git.enableGitAliases config.svc.git.aliases)
         ];
