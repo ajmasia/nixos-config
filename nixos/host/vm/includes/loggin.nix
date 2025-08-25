@@ -5,6 +5,9 @@
   services.greetd = {
     enable = true;
 
-    settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd bash";
+    settings.default_session = {
+      user = "syrax";
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd bash";
+    };
   };
 }
