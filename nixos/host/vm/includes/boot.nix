@@ -1,9 +1,6 @@
 { ... }:
 
 {
-
-
-
   boot = {
     # Bootloader.
     loader = {
@@ -29,4 +26,7 @@
     # # https://search.nixos.org/options?channel=23.11&show=boot.initrd.verbose&from=0&size=50&sort=relevance&type=packages&query=initrd.verbose
     initrd.verbose = false;
   };
+
+  # Remove getty help line so the first TTY stays blank until login prompt
+  services.getty.helpLine = lib.mkForce "";
 }
