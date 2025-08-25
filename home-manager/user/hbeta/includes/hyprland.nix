@@ -1,8 +1,7 @@
 { inputs, pkgs, ... }:
 
 {
-
-  imports = [ ./hyprland/configuration.nix ];
+  imports = [ ./hyprland/config.nix ];
 
   # TODO: Use unstable hyprland
   wayland.windowManager.hyprland = {
