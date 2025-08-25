@@ -60,6 +60,10 @@ in
       programs.neovim = mkMerge [
         {
           enable = true; # ensure Neovim is installed by HM
+
+          withPython3 = true;
+          withNodeJs = true;
+
           defaultEditor = mkDefault true;
         }
         safeSettings
@@ -75,7 +79,15 @@ in
     # LazyVim bootstrap via simple bash script (git clone), only if enabled
     (mkIf cfg.lazyvim.enable {
       # Ensure git is available in activation
-      home.packages = [ pkgs.git pkgs.coreutils ];
+      home.packages = with pkgs; [
+        gcc # GNU compiler collection tools
+        cmake # Cross-platform, open-source build system generatorpa
+        gnumake # Tool to control the generation of non-source files from sources
+        cargo # Rust builder & module manager
+        luajitPackages.luarocks # A package manager for Lua modules
+        tree-sitter # An incremental parsing system for programming tools
+        ripgrep # Line-oriented search tool that recursively searches your current directory for a regex pattern
+      ];
 
       # Activation step runs after files are written; it won't overwrite an existing config.
       home.activation.neovimLazyVimBootstrap = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

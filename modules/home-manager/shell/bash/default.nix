@@ -98,7 +98,6 @@ in
         htop.enable = true;
         jq.enable = true;
         lsd.enable = true;
-        ripgrep.enable = true;
 
         # fzf: enable and integrate with bash
         fzf = {
