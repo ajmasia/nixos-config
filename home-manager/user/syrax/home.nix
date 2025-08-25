@@ -44,7 +44,7 @@
       enable = true;
 
       enableCoreTools = true;
-      customAlias = {
+      customAliases = {
         ed = "nix run github:ajmasia/nvim-nix";
         ".ed" = "sudo nix run github:ajmasia/nvim-nix";
         edc = "cd $HOME/.nixos-config && ed flake.nix";
