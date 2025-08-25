@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_URL="https://github.com/yourusername/nixos-config.git"
+CLONE_DIR="$HOME/.nixos-config"
+HOST_NAME="vm" # Change this to your actual host flake name if needed
+
+# Ensure nix-shell is available
+if ! command -v nix-shell >/dev/null 2>&1; then
+  echo "nix-shell is required but not found. Aborting."
+  exit 1
+fi
+
+# Enter a nix shell with git
+nix-shell -p git --run "
+  # Clone the repo if not already present
+  if [ ! -d \"$CLONE_DIR\" ]; then
+    git clone \"$REPO_URL\" \"$CLONE_DIR\"
+  else
+    echo 'Repo already cloned at $CLONE_DIR'
+  fi
+"
+
+cd "$CLONE_DIR"
+
+# Copy hardware-configuration.nix
+if [ -f /etc/nixos/hardware-configuration.nix ]; then
+  cp /etc/nixos/hardware-configuration.nix \"nixos/host/$HOST_NAME/hardware-configuration.nix\"
+else
+  echo '/etc/nixos/hardware-configuration.nix not found! Aborting.'
+  exit 1
+fi
+
+# Apply the configuration with flakes enabled
+sudo nixos-rebuild switch --flake "$CLONE_DIR#nixos" --option experimental-features "nix-command flakes"
+
+echo "NixOS configuration applied successfully!"
