@@ -1,19 +1,9 @@
 { lib, pkgs, ... }:
 let
-  catppuccinMocha = ''
-    border=lightmagenta;
-    title=lightmagenta;
-    text=white;
-    greet=white;
-    prompt=lightcyan;
-    input=lightgreen;
-    time=lightblue;
-    action=lightblue;
-    button=yellow;
-    container=black
-  '';
+  tuigreet = lib.getExe pkgs.greetd.tuigreet;
 
-  theme = catppuccinMocha;
+  theme =
+    "border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red";
 in
 {
   # Initial login experience
@@ -23,12 +13,8 @@ in
 
     settings = rec {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet \
-          --time \
-          --asterisks \
-          --user-menu \
-          --theme '${lib.replaceStrings ["\n" " "] ["" ""] theme}' \
-          --cmd bash";
+        command = "${tuigreet} --time --asterisks --user-menu " + "--theme '${theme}' "
+          + "--cmd bash";
       };
     };
   };
