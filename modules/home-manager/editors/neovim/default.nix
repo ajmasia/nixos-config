@@ -4,13 +4,6 @@ with lib;
 
 let
   cfg = config.editors.neovim;
-
-  # Do not allow user-supplied settings to override 'enable' or 'package' here.
-  safeSettings = removeAttrs cfg.settings [ "enable" "package" ];
-
-  # Default aliases this module proposes; can be disabled via alias=false
-  # and/or overridden/extended via `extraAliases`.
-  defaultAliases = { };
 in
 {
   options.editors.neovim = {
@@ -26,28 +19,10 @@ in
     customAliases = mkOption {
       type = types.attrsOf types.str; # { aliasName = "command"; }
       default = { };
+      readOnly = true; # prevent accidental override at usage site
       description = "Alias map to inject into shells.";
     };
 
-    settings = mkOption {
-      type = types.attrs;
-      default = { };
-      description = ''
-        Extra attribute set merged into 'programs.neovim'.
-        Example:
-          {
-            viAlias = true;
-            vimAlias = true;
-            withNodeJs = true;
-            withPython3 = true;
-            extraConfig = "set number";
-            plugins = with pkgs.vimPlugins; [ nvim-treesitter telescope-nvim ];
-          }
-        The 'enable' and 'package' keys are ignored here.
-      '';
-    };
-
-    # --- NEW: simple LazyVim bootstrap switch ---
     lazyvim.enable = mkOption {
       type = types.bool;
       default = false;
@@ -57,21 +32,18 @@ in
   config = mkIf cfg.enable (mkMerge [
     # Neovim base configuration
     {
-      programs.neovim = mkMerge [
+      programs.neovim =
         {
-          enable = true; # ensure Neovim is installed by HM
+          enable = true;
 
           withPython3 = true;
           withNodeJs = true;
 
           defaultEditor = mkDefault true;
-        }
-        safeSettings
-      ];
+        };
 
       # Export aliases (module defaults -> user-provided)
       editors.neovim.customAliases = mkMerge [
-        (mkDefault defaultAliases)
         cfg.aliases
       ];
     }
