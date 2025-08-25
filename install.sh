@@ -25,7 +25,7 @@ cd "$CLONE_DIR"
 
 # Copy hardware-configuration.nix
 if [ -f /etc/nixos/hardware-configuration.nix ]; then
-  cp /etc/nixos/hardware-configuration.nix \"nixos/host/$HOST_NAME/hardware-configuration.nix\"
+  cp /etc/nixos/hardware-configuration.nix $CLONE_DIR/nixos/host/$HOST_NAME/hardware-configuration.nix
 else
   echo '/etc/nixos/hardware-configuration.nix not found! Aborting.'
   exit 1
