@@ -19,6 +19,12 @@
 
     kernelParams = [
       "quiet" # disable kernel messages on boot
+      "systemd.show_status=false"
+      "rd.systemd.show_status=false"
+      "udev.log_priority=0"
+      "rd.udev.log_priority=0"
+      "vt.global_cursor_default=0" # hide blinking cursor in VTs
+      "console=tty1" # ensure kernel console goes to tty1, not serial
     ];
 
     # disable verbose initrd messages on boot
@@ -26,7 +32,4 @@
     # # https://search.nixos.org/options?channel=23.11&show=boot.initrd.verbose&from=0&size=50&sort=relevance&type=packages&query=initrd.verbose
     initrd.verbose = false;
   };
-
-  # Remove getty help line so the first TTY stays blank until login prompt
-  services.getty.helpLine = lib.mkForce "";
 }
