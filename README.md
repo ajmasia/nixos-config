@@ -64,4 +64,4 @@ See `home-manager/user/syrax/home.nix` for a sample user environment.
 
 ## License
 
-MIT (or your preferred license).
+This repository is licensed under the [MIT License](./LICENSE).
