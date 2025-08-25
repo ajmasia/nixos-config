@@ -1,6 +1,6 @@
 { lib, config, pkgs, ... }:
 
-# Home Manager module: editors.neovim
+# Home Manager module: editor.neovim
 #
 # Purpose
 #   - Install and configure Neovim for the current user.
@@ -8,16 +8,16 @@
 #     or empty (idempotent: it will NOT overwrite an existing config).
 #
 # Options
-#   editors.neovim.enable          : bool
+#   editor.neovim.enable          : bool
 #     Master switch for this module.
 #
-#   editors.neovim.aliases         : attrsOf str
+#   editor.neovim.aliases         : attrsOf str
 #     User-defined alias map related to Neovim (e.g., { v = "nvim"; }).
 #     This module only *exports* aliases; your Bash/Zsh module should *merge*
 #     them (e.g., via lib.attrByPath and mkDefault) together with other alias
 #     sources (Git, custom, etc.).
 #
-#   editors.neovim.lazyvim.enable  : bool
+#   editor.neovim.lazyvim.enable  : bool
 #     When true, runs a bootstrap step on activation that:
 #       - clones https://github.com/LazyVim/starter into ~/.config/nvim
 #       - removes the .git directory
@@ -40,9 +40,9 @@
 
 with lib;
 
-let cfg = config.editors.neovim;
+let cfg = config.editor.neovim;
 in {
-  options.editors.neovim = {
+  options.editor.neovim = {
     enable = mkEnableOption "Install and configure Neovim via Home Manager.";
 
     aliases = mkOption {

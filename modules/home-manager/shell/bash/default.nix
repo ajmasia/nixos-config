@@ -8,12 +8,7 @@ let
   cfg = config.shell.bash;
 
   # Packages that are considered "core" for the shell environment.
-  coreTools = with pkgs; [
-    fd
-    lfs
-    tldr
-    unzip
-  ];
+  coreTools = with pkgs; [ fd lfs tldr unzip ];
 
   # Extra environment initialization that is appended to bash init.
   userBaseConfig = ''
@@ -26,8 +21,7 @@ let
     # Ensure XDG data dirs include system and Flatpak paths (apps can find .desktop files, etc.)
     export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
   '';
-in
-{
+in {
   # Option declarations
   options.shell.bash = {
     # Master switch for this module: enables all bash-related settings below
@@ -61,13 +55,20 @@ in
         # - Ignore some trivial commands in history
         # - Enable useful shell options (append history, fix window size, globbing, etc.)
         historyIgnore = [ "ls" "cd" "exit" ];
-        shellOptions = [ "histappend" "checkwinsize" "extglob" "globstar" "checkjobs" "autocd" ];
+        shellOptions = [
+          "histappend"
+          "checkwinsize"
+          "extglob"
+          "globstar"
+          "checkjobs"
+          "autocd"
+        ];
 
         # Inject user-defined aliases from the `customAliases` option
         shellAliases = mkMerge [
           cfg.aliases
           (lib.mkIf config.svc.git.enableAliases config.svc.git.aliases)
-          config.editors.neovim.aliases
+          config.editor.neovim.aliases
         ];
       };
 
