@@ -1,12 +1,12 @@
 { lib, ... }:
 
 {
-  imports = [ ./autostart.nix ./binding.nix ./ui.nix ];
+  imports = [ ./autostart.nix ./binding.nix ./env.nix ./ui.nix ];
 
   wayland.windowManager.hyprland.settings = {
     # Default applications
-    "$terminal" = lib.mkDefault "kitty";
+    "$terminal" = lib.mkDefault "alacritty";
 
-    monitor = "Virtual-1,1920x1080,auto,1";
+    monitor = "Virtual-1,1920x1080,auto,0.8";
   };
 }
