@@ -91,7 +91,7 @@ in
       ];
 
       # Activation step runs after files are written; it won't overwrite an existing config.
-      home.activation.neovimLazyVimBootstrap = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      home.activation.lazyVimBootstrap = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         set -eu
 
         # IMPORTANT: escape nix variables with double single-quotes
@@ -101,11 +101,10 @@ in
         # If nvim config dir is missing OR empty => bootstrap LazyVim
         if [ ! -d "$NVIM_DIR" ] || [ -z "$(${pkgs.coreutils}/bin/ls -A "$NVIM_DIR" 2>/dev/null || true)" ]; then
           echo "[neovim] Bootstrapping LazyVim into $NVIM_DIR"
+
           ${pkgs.coreutils}/bin/mkdir -p "$CFG_HOME"
           ${pkgs.git}/bin/git clone --depth 1 https://github.com/LazyVim/starter "$NVIM_DIR"
           ${pkgs.coreutils}/bin/rm -rf "$NVIM_DIR/.git"
-        else
-          echo "[neovim] Skipping LazyVim bootstrap: $NVIM_DIR already exists and is not empty"
         fi
       '';
     })
