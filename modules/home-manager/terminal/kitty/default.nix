@@ -2,10 +2,8 @@
 
 with lib;
 
-let
-  cfg = config.terminal.kitty;
-in
-{
+let cfg = config.terminal.kitty;
+in {
   options.terminal.kitty = {
     enable = mkEnableOption "enable bash configuration";
 
@@ -30,7 +28,7 @@ in
       font.name = "Hack Nerd Font";
       font.size = 13;
 
-      theme = cfg.theme;
+      themeFile = cfg.theme;
       shellIntegration.enableBashIntegration = cfg.useBash;
       shellIntegration.mode = "no-cursor";
 
