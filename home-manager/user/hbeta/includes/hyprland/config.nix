@@ -6,5 +6,7 @@
   wayland.windowManager.hyprland.settings = {
     # Default applications
     "$terminal" = lib.mkDefault "ghostty";
+
+    monitor = ",auto,auto,auto";
   };
 }
