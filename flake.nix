@@ -39,7 +39,7 @@
             specialArgs = { inherit inputs outputs; };
 
             modules = [
-              ./nixos/host/vm/configuration.nix
+              ./nixos/host/vm
             ];
           };
       };
