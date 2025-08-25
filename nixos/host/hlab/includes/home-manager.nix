@@ -16,7 +16,7 @@
 
     users = {
       # Import your home-manager configuration
-      "beta" = import ../../../../home-manager/user/beta/home.nix;
+      "beta" = import ../../../../home-manager/user/hbeta/home.nix;
     };
   };
 }

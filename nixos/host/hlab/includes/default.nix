@@ -8,7 +8,10 @@
     ./loggin.nix
     ./virtualisation.nix
     ./networking.nix
+    ./multimedia.nix
+    ./security.nix
+    ./fonts.nix
+    ./hyprland.nix
   ];
 }
-
 
