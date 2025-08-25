@@ -32,7 +32,7 @@ This repository provides a modular and reproducible NixOS configuration using [N
 Since Home Manager is configured as a NixOS module, rebuilding the system will also update the user environment:
 
 ```sh
-sudo nixos-rebuild switch --flake .#nixos
+sudo nixos-rebuild switch --impure --flake .#nixos
 ```
 
 ### Custom Packages
@@ -64,13 +64,11 @@ See `home-manager/user/beta/home.nix` for a sample user environment.
 
 ## Quick installation for the `lab` host
 
-1. **Perform a minimal NixOS installation**  
+- [ ] **Perform a minimal NixOS installation**  
    Install NixOS with a minimal setup (no graphical environment) and create the user named `beta` during the installation process.
-
-2. **Boot and log in**  
+- [ ] **Boot and log in**  
    Start the machine and log in as the `beta` user.
-
-3. **Run the installation script**  
+- [ ] **Run the installation script**  
    Download and execute the installation script using `nix-shell` and `curl`:
    ```sh
    nix-shell -p curl --run "curl -fsSL https://raw.githubusercontent.com/ajmasia/nixos-config/main/install.sh | bash"
