@@ -12,6 +12,7 @@ let
   # and/or overridden/extended via `extraAliases`.
   defaultAliases = { };
 
+  # https://lazamar.co.uk/nix-versions/
   legacyPkgs = import
     (builtins.fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/e10001042d6fc2b4246f51b5fa1625b8bf7e8df3.tar.gz";
