@@ -15,14 +15,6 @@ in
       description = "User-defined aliases merged on top of the module defaults.";
     };
 
-    # EXPORTED option with the aliases set so other modules (bash) can merge it.
-    customAliases = mkOption {
-      type = types.attrsOf types.str; # { aliasName = "command"; }
-      default = { };
-      readOnly = true; # prevent accidental override at usage site
-      description = "Alias map to inject into shells.";
-    };
-
     lazyvim.enable = mkOption {
       type = types.bool;
       default = false;
@@ -41,11 +33,6 @@ in
 
           defaultEditor = mkDefault true;
         };
-
-      # Export aliases (module defaults -> user-provided)
-      editors.neovim.customAliases = mkMerge [
-        cfg.aliases
-      ];
     }
 
     # LazyVim bootstrap via simple bash script (git clone), only if enabled
