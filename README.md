@@ -62,6 +62,21 @@ See `nixos/host/lab/default.nix` for a sample host setup.
 
 See `home-manager/user/syrax/home.nix` for a sample user environment.
 
+## Quick installation for the `lab` host
+
+1. **Perform a minimal NixOS installation**  
+   Install NixOS with a minimal setup (no graphical environment) and create the user named `syrax` during the installation process.
+
+2. **Boot and log in**  
+   Start the machine and log in as the `syrax` user.
+
+3. **Run the installation script**  
+   Download and execute the installation script using `nix-shell` and `curl`:
+   ```sh
+   nix-shell -p curl --run "curl -fsSL https://raw.githubusercontent.com/ajmasia/nixos-config/main/install.sh | bash"
+   ```
+This will automatically apply the configuration for the `lab` host and the `syrax` user.
+
 ## License
 
 This repository is licensed under the [MIT License](./LICENSE).
