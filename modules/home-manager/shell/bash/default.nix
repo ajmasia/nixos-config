@@ -26,13 +26,6 @@ let
     # Ensure XDG data dirs include system and Flatpak paths (apps can find .desktop files, etc.)
     export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
   '';
-
-  # Safely fetch the alias sets exported by other modules.
-  # If the path doesn't exist, default to an empty attrset {}.
-  gitAliases = lib.attrByPath [ "svc" "git" "aliases" ] { } config;
-  gitAliasesEnabled = lib.attrByPath [ "svc" "git" "enableAlias" ] false config;
-
-  neovimAliases = lib.attrByPath [ "editors" "neovim" "customAliases" ] { } config;
 in
 {
   # Option declarations
@@ -41,7 +34,7 @@ in
     enable = mkEnableOption "Enable bash configuration";
 
     # User-provided alias map (e.g., { ll = "ls -alF"; gs = "git status"; })
-    customAlias = mkOption {
+    customAliases = mkOption {
       type = types.attrs;
       default = { };
       description = "define shell aliases";
@@ -71,10 +64,9 @@ in
         shellOptions = [ "histappend" "checkwinsize" "extglob" "globstar" "checkjobs" "autocd" ];
 
         # Inject user-defined aliases from the `customAliases` option
-        shellAliases = lib.mkMerge [
-          cfg.customAlias
-          (lib.mkIf gitAliasesEnabled (lib.mkDefault gitAliases))
-          (lib.mkDefault neovimAliases)
+        shellAliases = ib.mkMerge [
+          cfg.customAliases
+          (lib.mkIf config.svc.git.enableGitAliases config.svc.git.aliases)
         ];
       };
 
