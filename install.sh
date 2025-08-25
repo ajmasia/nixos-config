@@ -3,7 +3,7 @@ set -euo pipefail
 
 REPO_URL="https://github.com/yourusername/nixos-config.git"
 CLONE_DIR="$HOME/.nixos-config"
-HOST_NAME="vm" # Change this to your actual host flake name if needed
+HOST_NAME="lab" # Change this to your actual host flake name if needed
 
 # Ensure nix-shell is available
 if ! command -v nix-shell >/dev/null 2>&1; then
@@ -32,6 +32,6 @@ else
 fi
 
 # Apply the configuration with flakes enabled
-sudo nixos-rebuild switch --flake "$CLONE_DIR#nixos" --option experimental-features "nix-command flakes"
+sudo nixos-rebuild switch --flake "$CLONE_DIR#nixos-$HOST_NAME" --option experimental-features "nix-command flakes"
 
 echo "NixOS configuration applied successfully!"

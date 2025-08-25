@@ -32,12 +32,12 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        "nixos" = nixpkgs.lib.nixosSystem {
+        "nixos-lab" = nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = { inherit inputs outputs; };
 
-          modules = [ ./nixos/host/vm ];
+          modules = [ ./nixos/host/lab ];
         };
       };
     };

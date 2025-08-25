@@ -17,7 +17,7 @@ This repository provides a modular and reproducible NixOS configuration using [N
 - `overlays/`: Custom overlays for package modifications and additions.
 - `modules/nixos/`: Reusable NixOS modules.
 - `modules/home-manager/`: Reusable Home Manager modules.
-- `nixos/host/vm/`: Example NixOS host configuration.
+- `nixos/host/lab/`: Example NixOS host configuration.
 - `home-manager/user/syrax/`: Example Home Manager user configuration.
 
 ## Usage
@@ -56,7 +56,7 @@ nix shell .#<package-name>
 
 ### Example Host Configuration
 
-See `nixos/host/vm/default.nix` for a sample host setup.
+See `nixos/host/lab/default.nix` for a sample host setup.
 
 ### Example Home Manager Configuration
 
