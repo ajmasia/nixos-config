@@ -7,7 +7,7 @@
     settings = rec {
       default_session = {
         user = "greeter";
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --user syrax --asterisks --cmd bash";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --user syrax --cmd bash";
       };
     };
   };
