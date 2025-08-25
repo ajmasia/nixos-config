@@ -19,16 +19,21 @@ let
       };
     };
   };
-in
-{
+in {
   options.terminal.alacritty = {
     enable = mkEnableOption "enable bash configuration";
 
     theme = mkOption {
       type = colorScheme;
-      default = { name = "catppuccin"; variant = "macchiato"; };
+      default = {
+        name = "catppuccin";
+        variant = "macchiato";
+      };
       description = "Configure the theme and its variant";
-      example = { name = "nord"; variant = "dark"; };
+      example = {
+        name = "nord";
+        variant = "dark";
+      };
     };
   };
 
@@ -40,9 +45,7 @@ in
         font = {
           size = 13;
 
-          normal = {
-            family = "Hack Nerd Font";
-          };
+          normal = { family = "Hack Nerd Font"; };
         };
 
         colors =
@@ -67,8 +70,8 @@ in
         };
 
         # TODO: make this optionable
-        shell = {
-          program = "/run/current-system/sw/bin/bash";
+        terminal = {
+          shell = { program = "/run/current-system/sw/bin/bash"; };
         };
       };
     };
