@@ -3,8 +3,10 @@
 
 {
   imports = [
-    ./nixpkgs-configuration.nix
+    ./locale.nix
     ./nix-configuration.nix
+    ./nixpkgs-configuration.nix
+    ./security.nix
   ];
 }
 
