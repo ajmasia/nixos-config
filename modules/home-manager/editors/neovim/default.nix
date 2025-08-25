@@ -84,10 +84,10 @@ in
         cmake # Cross-platform, open-source build system generatorpa
         gnumake # Tool to control the generation of non-source files from sources
         cargo # Rust builder & module manager
+        luajit # Just-in-time compiler for Lua
         luajitPackages.luarocks # A package manager for Lua modules
         tree-sitter # An incremental parsing system for programming tools
         ripgrep # Line-oriented search tool that recursively searches your current directory for a regex pattern
-        lua # Just-In-Time Compiler for Lua
       ];
 
       # Activation step runs after files are written; it won't overwrite an existing config.
