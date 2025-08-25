@@ -40,37 +40,36 @@
 
 with lib;
 
-let
-  cfg = config.editors.neovim;
-in
-{
+let cfg = config.editors.neovim;
+in {
   options.editors.neovim = {
     enable = mkEnableOption "Install and configure Neovim via Home Manager.";
 
     aliases = mkOption {
       type = types.attrsOf types.str;
       default = { };
-      description = "User-defined aliases merged on top of the module defaults.";
+      description =
+        "User-defined aliases merged on top of the module defaults.";
     };
 
     lazyvim.enable = mkOption {
       type = types.bool;
       default = false;
-      description = "If true, clone LazyVim/starter into ~/.config/nvim when the directory is absent or empty.";
+      description =
+        "If true, clone LazyVim/starter into ~/.config/nvim when the directory is absent or empty.";
     };
   };
   config = mkIf cfg.enable (mkMerge [
     # Neovim base configuration
     {
-      programs.neovim =
-        {
-          enable = true;
+      programs.neovim = {
+        enable = true;
 
-          withPython3 = true;
-          withNodeJs = true;
+        withPython3 = true;
+        withNodeJs = true;
 
-          defaultEditor = mkDefault true;
-        };
+        defaultEditor = mkDefault true;
+      };
     }
 
     # LazyVim bootstrap via simple bash script (git clone), only if enabled
@@ -88,22 +87,23 @@ in
       ];
 
       # Activation step runs after files are written; it won't overwrite an existing config.
-      home.activation.lazyVimBootstrap = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        set -eu
+      home.activation.lazyVimBootstrap =
+        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          set -eu
 
-        # IMPORTANT: escape nix variables with double single-quotes
-        CFG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
-        NVIM_DIR="''${CFG_HOME}/nvim"
+          # IMPORTANT: escape nix variables with double single-quotes
+          CFG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
+          NVIM_DIR="''${CFG_HOME}/nvim"
 
-        # If nvim config dir is missing OR empty => bootstrap LazyVim
-        if [ ! -d "$NVIM_DIR" ] || [ -z "$(${pkgs.coreutils}/bin/ls -A "$NVIM_DIR" 2>/dev/null || true)" ]; then
-          ${pkgs.coreutils}/bin/mkdir -p "$CFG_HOME"
-          ${pkgs.git}/bin/git clone --depth 1 https://github.com/LazyVim/starter "$NVIM_DIR"
-          ${pkgs.coreutils}/bin/rm -rf "$NVIM_DIR/.git"
+          # If nvim config dir is missing OR empty => bootstrap LazyVim
+          if [ ! -d "$NVIM_DIR" ] || [ -z "$(${pkgs.coreutils}/bin/ls -A "$NVIM_DIR" 2>/dev/null || true)" ]; then
+            ${pkgs.coreutils}/bin/mkdir -p "$CFG_HOME"
+            ${pkgs.git}/bin/git clone --depth 1 https://github.com/LazyVim/starter "$NVIM_DIR"
+            ${pkgs.coreutils}/bin/rm -rf "$NVIM_DIR/.git"
 
-          ${pkgs.util-linux}/bin/logger -t hm-lazyvim "[neovim] LazyVim bootstrapped into $NVIM_DIR"
-        fi
-      '';
+            ${pkgs.util-linux}/bin/logger -t hm-lazyvim "[neovim] LazyVim bootstrapped into $NVIM_DIR"
+          fi
+        '';
     })
   ]);
 }
