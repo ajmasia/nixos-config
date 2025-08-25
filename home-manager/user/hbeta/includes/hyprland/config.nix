@@ -7,6 +7,6 @@
     # Default applications
     "$terminal" = lib.mkDefault "ghostty";
 
-    monitor = ",auto,auto,auto";
+    monitor = "Virtual-1,1920x1080,auto,1";
   };
 }
