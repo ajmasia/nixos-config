@@ -6,12 +6,10 @@
     enable = true;
 
     settings = {
-      initial_session = {
+      default_session = {
         user = "syrax";
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd bash";
       };
-
-      default_session = initial_session;
     };
   };
 }
