@@ -19,12 +19,6 @@
 
     kernelParams = [
       "quiet" # disable kernel messages on boot
-      "systemd.show_status=false"
-      "rd.systemd.show_status=false"
-      "udev.log_priority=0"
-      "rd.udev.log_priority=0"
-      "vt.global_cursor_default=0" # hide blinking cursor in VTs
-      "console=tty1" # ensure kernel console goes to tty1, not serial
     ];
 
     # disable verbose initrd messages on boot
