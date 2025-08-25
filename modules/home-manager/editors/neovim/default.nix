@@ -81,8 +81,9 @@ in
       home.activation.neovimLazyVimBootstrap = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         set -eu
 
-        CFG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-        NVIM_DIR="${CFG_HOME}/nvim"
+        # IMPORTANT: escape nix variables with double single-quotes
+        CFG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
+        NVIM_DIR="''${CFG_HOME}/nvim"
 
         # If nvim config dir is missing OR empty => bootstrap LazyVim
         if [ ! -d "$NVIM_DIR" ] || [ -z "$(${pkgs.coreutils}/bin/ls -A "$NVIM_DIR" 2>/dev/null || true)" ]; then
