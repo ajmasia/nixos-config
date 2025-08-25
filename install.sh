@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_URL="https://github.com/yourusername/nixos-config.git"
+REPO_URL="https://github.com/ajmasia/nixos-config.git"
 CLONE_DIR="$HOME/.nixos-config"
 HOST_NAME="lab" # Change this to your actual host flake name if needed
 
