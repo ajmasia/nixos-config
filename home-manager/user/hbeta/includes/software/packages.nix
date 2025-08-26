@@ -3,7 +3,7 @@
 let
   systemTools = with pkgs;
     [
-      naytilus # gnome wayland file manager
+      nautilus # gnome wayland file manager
     ];
 
   allUserPackages = systemTools;
