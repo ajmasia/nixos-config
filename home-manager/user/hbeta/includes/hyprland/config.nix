@@ -7,6 +7,7 @@
     # Default applications
     "$terminal" = lib.mkDefault "alacritty";
 
-    monitor = "Virtual-1,1920x1080,auto,0.8";
+    monitor = ",2560x1440,auto,1";
+    # monitor = "Virtual-1,1920x1080,auto,0.8";
   };
 }

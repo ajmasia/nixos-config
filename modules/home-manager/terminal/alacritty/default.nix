@@ -42,10 +42,23 @@ in {
       enable = true;
 
       settings = {
-        font = {
-          size = 13;
+        env = { TERM = "xterm-256color"; };
 
-          normal = { family = "Hack Nerd Font"; };
+        font = {
+          size = 14;
+
+          normal = {
+            family = "CaskaydiaMono Nerd Font";
+            style = "Regular";
+          };
+          bold = {
+            family = "CaskaydiaMono Nerd Font";
+            style = "Bold";
+          };
+          italic = {
+            family = "CaskaydiaMono Nerd Font";
+            style = "Italic";
+          };
         };
 
         colors =
@@ -57,6 +70,7 @@ in {
             y = 8;
           };
           decorations = "none";
+          opacity = 0.96;
         };
 
         cursor = {
