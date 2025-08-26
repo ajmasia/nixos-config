@@ -13,10 +13,10 @@
 
     settings = {
       preload = [
-        "$HOME/.config/wallpapers"
+        "$HOME/.config/wallpapers/wallpaper_001.jpg"
       ];
       wallpaper = [
-        "$HOME/.config/wallpapers"
+        "$HOME/.config/wallpapers/wallpaper_001.jpg"
       ];
     };
   };
