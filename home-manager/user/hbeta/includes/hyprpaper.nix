@@ -12,8 +12,8 @@
     enable = true;
 
     settings = {
-      preload = [ "$HOME/.config/wallpapers/wallpaper_001.jpg" ];
-      wallpaper = [ "$HOME/.config/wallpapers/wallpaper_001.jpg" ];
+      preload = [ "~/.config/wallpapers/wallpaper_001.jpg" ];
+      wallpaper = [ ",~/.config/wallpapers/wallpaper_001.jpg" ];
     };
   };
 }
