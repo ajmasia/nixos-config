@@ -2,9 +2,14 @@
 
 {
   wayland.windowManager.hyprland.settings = {
-    bind = [ 
-      "SUPER, return, exec, $terminal" 
+    bind = [
+      # Main
+      "SUPER, return, exec, $terminal"
       "SUPER, W, killactive"
+
+      # Apps
+      "SUPER, B, exec, $browser"
+      "SUPER, F, exec, $fileManager"
 
       # Move focus with mainMod + arrow keys
       "SUPER, left, movefocus, l"
@@ -23,7 +28,7 @@
       "SUPER, 8, workspace, 8"
       "SUPER, 9, workspace, 9"
       "SUPER, 0, workspace, 10"
-      
+
       "SUPER, comma, workspace, -1"
       "SUPER, period, workspace, +1"
 
