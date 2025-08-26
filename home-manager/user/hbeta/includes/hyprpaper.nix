@@ -3,7 +3,7 @@
 {
   home.file = {
     ".config/wallpapers" = {
-      source = ../../../../themes/wallpapers;
+      source = ../../../../assets/wallpapers;
       recursive = true;
     };
   };
