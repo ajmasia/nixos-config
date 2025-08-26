@@ -10,7 +10,7 @@
       # Apps
       "SUPER, B, exec, $browser"
       "SUPER, F, exec, $fileManager"
-      "SUPER SHIFT G, exec, $webapp=https://github.com/ajmasia"
+      "SUPER SHIFT, G, exec, $webapp=https://github.com/ajmasia/"
 
       # Move focus with mainMod + arrow keys
       "SUPER, left, movefocus, l"
